@@ -1,0 +1,251 @@
+1.
+name=input("Enter name of the student:")
+usn=input("Enter usn")
+m1=int(input("Enter marks in subject 1:"))
+m2=int(input("Enter marks in subject 2:"))
+m3=int(input("Enter marks in subject 3:"))
+
+total_marks = m1+m2+m3
+percentage = total_marks/3
+
+print("Name of the student", name)
+print("USN of the student",usn)
+print("Total marks : ",total_marks)
+print(f"percentage of marks : {percentage:.2f}")
+
+2.
+import datetime
+name=input("Enter name")
+yob=int(input("Enter yob"))
+today = datetime.date.today()
+current_year = today.year
+
+age = current_year-yob
+if age>=60:
+   print(f"{name}is a senior citizzen")
+else:
+    print(f"{name}is not a senior citizen")
+
+
+
+3.
+n=int(input("Enter the value of n:"))
+
+print("First {n} Fibonacci number are : ")
+f1 = 0
+f2 = 1
+print("0 1",end =" ")
+
+counter = 2
+while counter<n:
+    f3 = f1+f2
+    print(f3, end=" ")
+    f1=f2
+    f2=f3
+    counter+=1
+
+4.
+def factorial(n):
+    f=1
+    for i in range(1,n+1):
+        f=f*i
+    return f
+print("Enter n and r:")
+n,r=map(int,input().split())
+ncr=factorial(n)/(factorial(n)*factorial(n-r))
+print(f"{n}c{n}={ncr:.2f}")
+
+5.
+import math
+n=int(input("Enter the value of N:"))
+
+print(f"Enter {n} numbers one below the other")
+lst = []
+
+for i in range(n):
+    num = int(input())
+    lst.append(num)
+
+mean = sum(lst)/len(lst)
+
+sumsqrd = 0
+
+for n in lst:
+    d = mean-num
+    sumsqrd+=d*d
+variance=sumsqrd/len(lst)
+stddev = math.sqrt(variance)
+print(f"Mean = {mean:.2f}")
+print(f"Variance = {variance:.2f}")
+print(f"Standred Deviation = {stddev:.2f}")
+
+6.
+n=input("Enter a multidigit number:")
+
+d={}
+
+for ch in n:
+    d.setdefault(ch, 0)
+    d[ch]+=1
+
+print("Frequency of each digit")
+
+for key,value in d.items():
+    print(f"{key} is repeated {value} times")
+7.
+fp = open("c:\\pythonclass\\myfile.txt", "r")
+contents=fp.read()
+fp.close()
+d={}
+words=contents.split()
+for word in words:
+    d.setdefault(word,0)
+    d[word]+=1
+
+sortedwords=sorted(d.items(),key=lambda x:x[1],reverse=True)
+
+for i in range(10):
+    print(f"{sortedwords[i][0]} is appearing{sortedwords[i][1]},times")
+
+8.
+source=open("c:\\pythonclass\\sample.txt")
+contents=source.readlines()
+source.close()
+contents.sort()
+
+dest=open("c:\\pythonclass\\sortedtxt","w")
+for line in contents:
+    dest.write(line+'\n')
+
+dest.close()
+
+dest=open("c\\pythonclass\\sortedtext.txt","r")
+print("Contents of the sorted file")
+print(dest.read())
+dest.colse()
+
+9.
+import os
+import zipfile
+import sys
+os.chdir("c://pythonclass")
+dirname=input("enter the name of directory to backup")
+if not os.path.isdir(dirname):
+    print("enter:Directory name is invalid")
+    sys.exit(0)
+zp=zipfile.zipfile(dirname+".zip","w")
+dircontents=os.listdir(dirname)
+for file in dircontents:
+    if os.path.isfile(file):
+        zp.write(dirname+"//"+file,compress_type=zipfile.ZIP_DEFLATED)
+zp.close()
+if os.path.isfile(dirname+"zip"):
+   print("contents of the zipfile")
+else:
+    print("error n.creating successfully")
+    sys.exit(0)
+print("contents of the zipfile")
+zp=zipfile.ZIPFILE(dirname+".zip")
+print(zp.namelist())
+zp.close()
+
+10.
+import sys
+def DivExp(a,b):
+    assert a>0,"Value of a should be greater than zero"
+
+    try:
+        c=a/b
+    except ZeroDivisionError:
+        print("Zero Division Error")
+        sys.exit(0)
+    else:
+        return c
+    
+v1=int(input("Enter first number:"))
+v2=int(input("Enter second number:"))
+
+try:
+    v3=DivExp=(v1,v2)
+except AssertionError as err:
+    print(err)
+else:
+    print(f"{v1}/{v2}={v3:.2f}")
+
+11.
+class Complex:
+    def _init_(self,rp=0,ip=0):
+        self.rp=rp
+        self.ip=ip
+    def setComplex(self,rp,ip):
+        self.rp=rp
+        self.ip=ip
+    def readComplex(self):
+        self.rp=int(input("Enter real part:"))
+        self.ip=int(input("Enter imaginary part:"))
+    def showComplex(self):
+        print(f"{self.rp:.2f}+i{self.ip:.2f}")
+    def addComplex(self,c2):
+        c3=Complex()
+        c3.rp=self.rp+c2.rp
+        c3.ip=self.ip+c2.ip
+        return c3
+def add2Complex(c1,c2):
+    c=c1.addComplex(c2)
+    return c
+c1=Complex(10,2)
+c2=Complex(5,4)
+print("Complex Number 1 is:")
+c1.showComplex()
+print("Complex Number 2 is:")
+c2.showComplex()
+c3=add2Complex(c1,c2)
+print("Sum of two Complex numbers is:")
+c3.showComplex()
+
+lst=[]
+n=int(input("Enter the value of n:"))
+for i in range(n):
+    print("Enter details of Complex number:",i+1)
+    c=Complex()
+    c.readComplex()
+    lst.append(c)
+print("\nEntered Complex numbers are:")
+for obj in lst:
+    obj.showComplex()
+sum=Complex()
+for obj in lst:
+    sum=add2Complex(sum,obj)
+print("\nSum of N Complex numbers is",end=" ")
+sum.showComplex()
+
+12.
+class Student:
+    def init(self,name=" ",usn=" ",score=[0,0,0,0]):
+        self.name=name
+        self.usn=usn
+        self.score=score
+
+    def getMarks(self):
+        self.name=input("Enter the Student name:")
+        self.usn=input("Enter USN:")
+        print("Enter marks in three subjects")
+
+        for i in range(3):
+            self.score[i] =int(input("Enter marks:"))
+            self.score[3]=self.score[0]+self.score[1]+self.score[2]
+    def display(self):
+        hline="-"*75
+        self.percentage=self.score[3]/3
+        print(hline)
+        print("SCORE CARD DETAILS".center(75))
+        print(hline)
+        print(f"{'USN':12} {'Name':20} {'Marks':^8}",end=" ")
+        print(f"{'Marks1':^8} {'Marks2':^8} {'Marks3':^8} {'Percentage':^8}")
+        print(hline)
+        print(f"{self.usn:12} {self.name:25} {self.score[0]:^8}",end=" ")
+        print(f"{self.score[1]:^8}{self.score[2]:^8}{self.percentage:^.2f}")
+        print(hline)
+s1=Student()
+s1.getMarks()
+s1.display()
